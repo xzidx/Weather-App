@@ -1,8 +1,3 @@
-
 <template>
-  <main>
-     <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-  </main>
+  <div class="w-full bg-red-500 h-200"></div>
 </template>
