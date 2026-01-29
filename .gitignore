@@ -44,7 +44,7 @@ build/
 .DS_Store
 Thumbs.db
 
-# Lock files (optional)
-# package-lock.json
+# Lock files
+package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
