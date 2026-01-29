@@ -36,7 +36,7 @@
 
       <!-- Copyright -->
       <span class="block text-sm text-body text-black sm:text-center">
-        © 2023 Nimbus Travel. All Rights Reserved.
+        © 2026 Nimbus Travel. All Rights Reserved.
       </span>
     </div>
   </footer>
