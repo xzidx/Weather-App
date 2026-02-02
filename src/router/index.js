@@ -37,6 +37,8 @@ const router = createRouter({
       name: 'warning',
       component: () => import('../views/WarningView.vue'),
     },
+    
+    
   ],
 })
 

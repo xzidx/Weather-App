@@ -1,5 +1,9 @@
+<script setup>
+import Card from '@/components/Card.vue';
+
+</script> 
 <template>
-  <main>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
-  </main>
+  <div class="container flex justify-center gap-10 cursor-pointer">
+    <Card location="Tik Tok"/>
+  </div>
 </template>

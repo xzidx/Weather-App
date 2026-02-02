@@ -11,7 +11,7 @@
 a,
 .green {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: rgba(0, 0, 0, 0.389);
   transition: 0.4s;
   padding: 3px;
 }
@@ -36,3 +36,4 @@ a,
     padding: 0 2rem;
   }
 }
+
