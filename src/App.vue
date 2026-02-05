@@ -9,12 +9,6 @@ import Footer from './components/Footer.vue'
   <Footer />
 </template>
 
-<template>
-  <h1>Food</h1>
-  <food-item food-name="Apples"/>
-  <food-item food-name="Pizza"/>
-  <food-item food-name="Rice"/>
-</template>
 
 <script></script>
 
