@@ -1,7 +1,6 @@
 <script setup>
-import { ref, defineEmits } from 'vue'
+import { ref, defineEmits, computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 // Font Awesome
@@ -12,15 +11,21 @@ import {
   faBars,
   faRightToBracket,
   faXmark,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons'
 
 // Add icons to library
-library.add(faMagnifyingGlassLocation, faBars, faRightToBracket, faXmark)
+library.add(faMagnifyingGlassLocation, faBars, faRightToBracket, faXmark, faUser)
 
 // Local state
 const searchOpen = ref(false)
 const searchInput = ref("")
-const menuOpen = ref(false) // <-- dropdown menu state
+const menuOpen = ref(false)
+
+// Vuex Store
+const store = useStore()
+const isLoggedIn = computed(() => store.getters.isLoggedIn)
+const user = computed(() => store.getters.user)
 
 // Event emitter to parent
 const emit = defineEmits(["search"])
@@ -28,38 +33,34 @@ const emit = defineEmits(["search"])
 // Toggle search input open/close
 function toggleSearch() {
   searchOpen.value = !searchOpen.value
-  menuOpen.value = false // close menu when opening search
+  menuOpen.value = false 
 }
 
 // Handle search submit (Enter key)
 function handleSearchEnter(event) {
   if(event.key === 'Enter' && searchInput.value.trim() !== "") {
-    emit("search", searchInput.value.trim())  // send city name to parent
+    emit("search", searchInput.value.trim())
     searchInput.value = ""
     searchOpen.value = false
   }
 }
 
-// Close menu when clicking outside
+// Close menu
 function closeMenu() {
   menuOpen.value = false
 }
-const store = useStore()
 
-const isLoggedIn = computed(() => store.getters.isLoggedIn)
-const user = computed(() => store.getters.user)
-
+// Logout and close menu
 function logout() {
   store.dispatch('logout')
+  menuOpen.value = false
 }
-
 </script>
 
 <template>
   <header class="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
     <nav class="max-w-full mx-auto px-6 py-4 flex justify-between items-center h-20">
 
-      <!-- Logo -->
       <div v-if="!searchOpen" class="flex items-center">
         <RouterLink to="/">
           <img
@@ -68,16 +69,14 @@ function logout() {
             class="h-16 w-auto transition-transform duration-300 hover:scale-105"
           />
         </RouterLink>
-        <span class="text-heading self-center text-lg font-semibold whitespace-nowrap text-black"
+        <span class="text-heading self-center text-lg font-semibold whitespace-nowrap text-black ml-2"
           >Nimbus Travel</span
         >
       </div>
 
-      <!-- Nav Links -->
       <div v-if="!searchOpen" class="relative">
         <ul class="flex items-center gap-10 text-lg font-semibold text-gray-700">
 
-          <!-- Search Button -->
           <li class="relative group flex items-center">
             <div
               @click="toggleSearch"
@@ -88,9 +87,7 @@ function logout() {
             </div>
           </li>
 
-          <!-- Menu with Dropdown -->
           <li class="relative">
-            <!-- Menu Button -->
             <div
               @click="menuOpen = !menuOpen"
               class="flex items-center gap-2 cursor-pointer hover:text-[aqua] px-2 py-1 select-none"
@@ -99,75 +96,58 @@ function logout() {
               <span>Menu</span>
             </div>
 
-            <!-- Dropdown Menu -->
             <ul
               v-show="menuOpen"
-              class="absolute top-14 right-0  w-70 gap-20 bg-white shadow-lg rounded-md border border-gray-200 z-50 animate-fadeIn"
+              class="absolute top-14 right-0 w-64 bg-white shadow-lg rounded-md border border-gray-200 z-50 animate-fadeIn flex flex-col overflow-hidden"
             >
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
-                <RouterLink to="/about">About us</RouterLink>
+              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+                <RouterLink to="/about" class="block w-full">About us</RouterLink>
+              </li>
+              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+                <RouterLink to="/contact" class="block w-full">Contact</RouterLink>
+              </li>
+              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+                <RouterLink to="/help" class="block w-full">Help</RouterLink>
+              </li>
+              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+                <RouterLink to="/map" class="block w-full">Map View</RouterLink>
+              </li>
+              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+                <RouterLink to="/warning" class="block w-full">Warning</RouterLink>
               </li>
               <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
-                <RouterLink to="/contact">Contact</RouterLink>
+                <RouterLink to="/weather" class="block w-full">Weather View</RouterLink>
               </li>
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
-                <RouterLink to="/help">Help</RouterLink>
-              </li>
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
-                <RouterLink to="/map">Map View</RouterLink>
-              </li>
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
-                <RouterLink to="/warning">Warning</RouterLink>
-              </li>
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
-                <RouterLink to="/weather">Weather View</RouterLink>
+
+              <li v-if="isLoggedIn" 
+                  @click="logout"
+                  class="px-4 py-2 hover:bg-red-50 cursor-pointer text-red-500 border-t border-gray-200 font-bold"
+                >
+                Logout
               </li>
             </ul>
           </li>
 
-         <!-- AUTH SECTION -->
-            <li v-if="!isLoggedIn">
-              <RouterLink to="/login" class="flex items-center gap-2 hover:text-[aqua]">
-                <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
-                <span>Login</span>
-              </RouterLink>
-            </li>
+          <li v-if="!isLoggedIn">
+            <RouterLink to="/login" class="flex items-center gap-2 hover:text-[aqua]">
+              <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
+              <span>Login</span>
+            </RouterLink>
+          </li>
 
-            <li v-else class="relative">
-              <div
-                @click="menuOpen = !menuOpen"
-                class="flex items-center gap-2 cursor-pointer hover:text-[aqua]"
-              >
-                <FontAwesomeIcon icon="fa-solid fa-user" />
-                <span>{{ user?.name || 'User' }}</span>
-              </div>
-
-              <!-- Dropdown -->
-              <ul
-                v-show="menuOpen"
-                class="absolute top-14 right-0 w-40 bg-white shadow-lg rounded-md border z-50"
-              >
-                <li
-                  @click="logout"
-                  class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
-                >
-                  Logout
-                </li>
-              </ul>
-            </li>
-
-
+          <li v-else class="flex items-center gap-2 text-blue-500 select-none">
+            <FontAwesomeIcon icon="fa-solid fa-user" />
+            <span>{{ user?.name || 'User' }}</span>
+          </li>
         </ul>
 
-        <!-- Close menu if click outside -->
         <div
           v-if="menuOpen"
           @click="closeMenu"
-          class="fixed inset-0 z-40"
+          class="fixed inset-0 z-40 bg-transparent"
         ></div>
       </div>
 
-      <!-- Search Input Open -->
       <div v-else class="flex-1 flex items-center gap-4 animate-fadeIn">
         <div class="relative w-full">
           <FontAwesomeIcon
