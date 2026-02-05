@@ -1,3 +1,5 @@
+<template>2</template>
+
 <template>
  <div
   class="min-h-screen bg-white font-sans text-[#333]
