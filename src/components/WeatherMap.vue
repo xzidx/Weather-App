@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { onMounted, ref } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -24,4 +24,4 @@ onMounted(() => {
         <h3 class="text-xl font-bold mb-4">World Weather Map</h3>
         <div id="map-container" class="h-500px w-500px rounded-2xl shadow-xl border-4 border-white"></div>
     </div>
-</template>
+</template> -->

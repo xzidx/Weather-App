@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LandView from '../components/LandView.vue'
-import SeaView from '../components/SeaView.vue'
+import WarningView from '../views/WarningView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -32,16 +31,6 @@ const router = createRouter({
       path: '/weather',
       name: 'weather',
       component: () => import('../views/WeatherView.vue'),
-    },
-    {
-      path: '/warning/land',
-      name: 'land',
-      component: LandView,
-    },
-    {
-      path: '/warning/sea',
-      name: 'sea',
-      component: SeaView,
     },
     {
       path: '/warning',
