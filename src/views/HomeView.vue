@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="w-full bg-[#CAF0F8] min-h-screen flex items-center justify-center">
     <div class="w-full max-w-7xl p-5">
 
