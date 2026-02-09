@@ -28,11 +28,6 @@ const router = createRouter({
       component: () => import('../views/HelpView.vue'),
     },
     {
-      path: '/weather',
-      name: 'weather',
-      component: () => import('../views/WeatherView.vue'),
-    },
-    {
       path: '/warning',
       name: 'warning',
       component: () => import('../views/WarningView.vue'),
