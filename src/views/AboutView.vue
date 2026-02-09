@@ -26,7 +26,7 @@
             <img
         src="@/assets/weather-map.png"
         alt="Weather Logo"
-        class="h-96 w-auto max-w-6xl transition-transform shadow-lg"
+        class="h-50 w-auto max-w-6xl transition-transform shadow-lg"
       />
 
       </div>
