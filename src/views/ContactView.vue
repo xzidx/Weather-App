@@ -26,7 +26,7 @@
         </div>
 
         <div class="flex flex-col gap-1">
-          <label for="message" class="text-sm font-semibold text-gray-300">Forklaring</label>
+          <label for="message" class="text-sm font-semibold text-gray-300">Message</label>
           <textarea
             id="message"
             rows="4"
