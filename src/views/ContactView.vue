@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+  <div class="min-h-screen bg-[#CAF0F8] flex flex-col items-center justify-center p-4">
     <form class="w-full max-w-[500px] bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700">
       <div class="flex flex-col gap-4">
         <h2 class="text-3xl font-black text-center text-white">Contact</h2>
