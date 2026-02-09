@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import store from '../store'
+import RegionDetailView from '@/views/RegionDetailView.vue'
+import RegionListView from '@/views/RegionListView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -46,6 +48,18 @@ const router = createRouter({
       path: '/signup',
       name: 'signup',
       component: () => import('../views/SignupView.vue'),
+    },
+     {
+      path: '/water-temperatures',
+      name: 'water-list',
+      component: RegionListView,
+    },
+    // This is your "Specific Region" table page (image 2)
+    {
+      path: '/water-temperatures/:id',
+      name: 'region-detail',
+      component: RegionDetailView,
+      props: true,
     },
   ],
 })

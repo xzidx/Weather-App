@@ -63,7 +63,7 @@ const signup = async () => {
               </label>
               <input 
                 v-model="number" 
-                type="email" 
+                type="number" 
                 placeholder="+123 000 000" 
                 class="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-50 transition-all outline-none text-gray-600 placeholder:text-gray-300" 
                 required 
