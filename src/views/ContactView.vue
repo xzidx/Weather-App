@@ -1,52 +1,55 @@
 <template>
-  <br /><br /><br /><br />
-  <form class="max-w flex justify-center p-4">
-    <div class="flex flex-col gap-2 w-[500px]">
-      <p class="text-3xl font-black text-center">Contact</p>
-      <label for="email" class="text-sm font-semibold text-gray-700"> Your email address </label>
+  <div class="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+    <form class="w-full max-w-[500px] bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700">
+      <div class="flex flex-col gap-4">
+        <h2 class="text-3xl font-black text-center text-white">Contact</h2>
+        
+        <div class="flex flex-col gap-1">
+          <label for="email" class="text-sm font-semibold text-gray-300">Your email address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+            required
+            class="block w-full rounded-md border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2.5 border"
+          />
+        </div>
 
-      <input
-        type="email"
-        id="email"
-        placeholder="you@example.com"
-        required
-        class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2.5 border"
-      />
+        <div class="flex flex-col gap-1">
+          <label for="subject" class="text-sm font-semibold text-gray-300">Subject</label>
+          <input
+            type="text"
+            id="subject"
+            required
+            class="block w-full rounded-md border-gray-600 bg-gray-700 text-white focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2.5 border"
+          />
+        </div>
 
-      <label for="email" class="text-sm font-semibold text-gray-700"> Subject </label>
+        <div class="flex flex-col gap-1">
+          <label for="message" class="text-sm font-semibold text-gray-300">Forklaring</label>
+          <textarea
+            id="message"
+            rows="4"
+            class="block w-full rounded-md border-gray-600 bg-gray-700 text-white focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2.5 border"
+          ></textarea>
+        </div>
 
-      <input
-        type="email"
-        id="email"
-        required
-        class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2.5 border"
-      />
+        <div class="flex flex-col gap-1">
+          <label for="file" class="text-sm font-semibold text-gray-300">Attachments</label>
+          <input
+            type="file"
+            id="file"
+            class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer"
+          />
+        </div>
 
-      <label for="email" class="text-sm font-semibold text-gray-700"> Forklaring </label>
-
-      <textarea
-        name=""
-        id=""
-        class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2.5 border"
-      >
-      </textarea>
-
-      <label for="email" class="text-sm font-semibold text-gray-700"> Attachments </label>
-
-      <input
-        type="email"
-        id="email"
-        placeholder="Add file or drop files here"
-        required
-        class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2.5 border"
-      />
-
-      <button
-        type="submit"
-        class="mt-4 rounded-md bg-indigo-600 px-4 py-2 self-start text-sm font-white text-white hover:bg-indigo-700 transition-colors"
-      >
-        Submit
-      </button>
-    </div>
-  </form>
+        <button
+          type="submit"
+          class="mt-4 rounded-md bg-indigo-600 px-6 py-2.5 self-start text-sm font-bold text-white hover:bg-indigo-500 transition-all shadow-lg active:scale-95"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
 </template>
