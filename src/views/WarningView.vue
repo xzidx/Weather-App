@@ -16,22 +16,25 @@
             </div>
         </div>
 
-  <div v-if="activeTab === 'land'" class="mt-8">
+        <div v-if="activeTab === 'land'" class="mt-8">
             <div class="w-4/5 mx-auto flex gap-3 justify-start">
-                <select class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
+                <select
+                    class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
                     <option>All counties</option>
                     <option>Oslo</option>
                     <option>Rogaland</option>
                 </select>
 
-                <select v-model="filterSeverity" class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
+                <select v-model="filterSeverity"
+                    class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
                     <option value="all">All severities</option>
                     <option value="yellow">Yellow</option>
                     <option value="orange">Orange</option>
                     <option value="red">Red</option>
                 </select>
 
-                <select v-model="filterEvent" class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
+                <select v-model="filterEvent"
+                    class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
                     <option value="all">All event types</option>
                     <option value="Avalanche">Avalanche</option>
                     <option value="Wind">Wind</option>
@@ -42,13 +45,15 @@
 
         <div v-if="activeTab === 'sea'" class="mt-8">
             <div class="w-4/5 mx-auto flex gap-3 justify-start">
-                <select v-model="filterSeverity" class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
+                <select v-model="filterSeverity"
+                    class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
                     <option value="all">All severities</option>
                     <option value="yellow">Yellow</option>
                     <option value="orange">Orange</option>
                 </select>
 
-                <select v-model="filterEvent" class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
+                <select v-model="filterEvent"
+                    class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
                     <option value="all">All event types</option>
                     <option value="Wind">Wind</option>
                     <option value="Gale">Gale</option>
@@ -68,8 +73,62 @@
             <ol>
                 <WeatherWarningCard v-for="(item, index) in filteredExpected" :key="'ex-' + index" :warning="item" />
             </ol>
+
+            <!-- footer -->
+
+        <footer class="mt-10 border-t border-blue-200 pt-10 pb-20 text-[#1a2b3c]">
+            <div class="flex gap-4 mb-8">
+                <button
+                    class="bg-[#90E0EF] px-4 py-2 rounded text-sm font-semibold flex items-center gap-2 hover:bg-blue-200 transition">
+                    <span>⚙️</span> See all help articles
+                </button>
+                <button
+                    class="bg-[#90E0EF] px-4 py-2 rounded text-sm font-semibold flex items-center gap-2 hover:bg-blue-200 transition">
+                    <span>✉️</span> Contact us
+                </button>
+                <button
+                    class="bg-[#90E0EF] px-4 py-2 rounded text-sm font-semibold flex items-center gap-2 hover:bg-blue-200 transition">
+                    <span>🌐</span> Choose language / velg språk ▾
+                </button>
+            </div>
+
+            <p class="text-sm mb-4">Yr is a collaboration between</p>
+
+            <div class="flex items-center gap-8 mb-8">
+                <div class="font-black text-2xl tracking-tighter">NRK</div>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full border-2 border-slate-900"></div>
+                    <span class="text-xs font-bold leading-tight">Meteorologisk<br>institutt</span>
+                </div>
+            </div>
+
+            <div class="text-[11px] leading-relaxed text-slate-600 space-y-1">
+                <p>Copyright © Norwegian Meteorological Institute and the Norwegian Broadcasting Corporation 2007-2026 |
+                    Head of Yr: Ingrid Støver Jensen |</p>
+                <p>Executive editor: Vibeke Fürst Haugen | Meteorologically responsible: Roar Skålin</p>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-blue-700 underline font-medium">
+                <a href="#">Privacy</a>
+                <a href="#">Cookies</a>
+                <a href="#">Our collaborators</a>
+                <a href="#">App for iOS</a>
+                <a href="#">App for Android</a>
+                <a href="#">Yr for developers</a>
+                <a href="#">Water temperatures</a>
+                <a href="#">Yr on Facebook</a>
+                <a href="#">Yr on Instagram</a>
+            </div>
+        </footer>
+
+
         </div>
+
+
+        
+        
     </div>
+    
 </template>
 
 <script setup>
