@@ -1,10 +1,13 @@
 <template>
-  <div class="about-container w-full bg-[#CAF0F8] mt-20 mx-auto p-8 min-h-screen flex flex-col justify-center">
-    
+  <div
+    class="about-container w-full bg-[#CAF0F8] mt-20 mx-auto p-8 min-h-screen flex flex-col justify-center"
+  >
     <section class="relative py-20 bg-[#90E0EF] text-black text-center">
       <div class="max-w-4xl mx-auto px-6">
         <h1 class="text-5xl font-bold mb-4">Our Story</h1>
-        <p class="text-xl opacity-90">Building the future of digital experiences with passion and precision.</p>
+        <p class="text-xl opacity-90">
+          Building the future of digital experiences with passion and precision.
+        </p>
       </div>
     </section>
 
@@ -12,23 +15,22 @@
       <div>
         <h2 class="text-3xl font-semibold mb-4 text-blue-700">Who We Are</h2>
         <p class="text-lg leading-relaxed mb-4">
-          Founded in 2026, we started with a simple idea: make technology feel more human. 
-          We believe that great design isn't just about how it looks, but how it works for you.
+          Founded in 2026, we started with a simple idea: make technology feel more human. We
+          believe that great design isn't just about how it looks, but how it works for you.
         </p>
         <p class="text-lg leading-relaxed">
-          Our team is a diverse group of creators, thinkers, and explorers dedicated to 
-          pushing the boundaries of what's possible in the web ecosystem.
+          Our team is a diverse group of creators, thinkers, and explorers dedicated to pushing the
+          boundaries of what's possible in the web ecosystem.
         </p>
       </div>
-      <div class="bg-gray-200 rounded-2xl h-64 flex items-center justify-center text-gray-500 italic">
-        
-
-            <img
-        src="@/assets/weather-map.png"
-        alt="Weather Logo"
-        class="h-50 w-auto max-w-6xl transition-transform shadow-lg"
-      />
-
+      <div
+        class="bg-gray-200 rounded-2xl h-64 flex items-center justify-center text-gray-500 italic"
+      >
+        <img
+          src="@/assets/weather-map.png"
+          alt="Weather Logo"
+          class="h-50 w-auto max-w-6xl transition-transform shadow-lg"
+        />
       </div>
     </section>
 
@@ -54,7 +56,6 @@
         </div>
       </div>
     </section>
-
   </div>
 </template>
 
@@ -65,7 +66,8 @@
   line-height: 1.6;
 }
 
-h1, h2 {
+h1,
+h2 {
   letter-spacing: -0.02em;
 }
 

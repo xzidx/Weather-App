@@ -3,7 +3,7 @@
     <form class="w-full max-w-[500px] bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700">
       <div class="flex flex-col gap-4">
         <h2 class="text-3xl font-black text-center text-white">Contact</h2>
-        
+
         <div class="flex flex-col gap-1">
           <label for="email" class="text-sm font-semibold text-gray-300">Your email address</label>
           <input

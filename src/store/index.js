@@ -26,7 +26,7 @@ export default createStore({
         // 🔹 Fake login logic
         if (payload.email === 'admin@test.com' && payload.password === '1234') {
           commit('SET_USER', payload)
-          resolve(true)  // login success
+          resolve(true) // login success
         } else {
           resolve(false) // login failed
         }

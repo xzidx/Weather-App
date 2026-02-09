@@ -1,12 +1,8 @@
 <template>
   <!-- Page wrapper (ONLY addition) -->
   <div class="min-h-screen bg-white flex flex-col justify-center items-center">
-
-
     <div class="w-full mx-auto mt-24 p-8 rounded-lg">
-      <h1 class="text-2xl font-bold text-black mb-6">
-        Weather warnings in Norway
-      </h1>
+      <h1 class="text-2xl font-bold text-black mb-6">Weather warnings in Norway</h1>
 
       <div class="flex justify-center mt-6">
         <div class="bg-white rounded-lg shadow-sm p-1 flex w-fit">
@@ -31,7 +27,9 @@
       <!-- LAND FILTERS -->
       <div v-if="activeTab === 'land'" class="mt-8">
         <div class="w-4/5 mx-auto flex gap-3 justify-start">
-          <select class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none">
+          <select
+            class="bg-[#C7DDF9] text-black font-medium px-4 py-2 rounded-md cursor-pointer outline-none border-none"
+          >
             <option>All counties</option>
             <option>Oslo</option>
             <option>Rogaland</option>
@@ -86,9 +84,7 @@
     <!-- WARNINGS LIST -->
     <div class="w-full">
       <div class="block w-full m-auto p-6">
-        <h3 class="text-2xl font-bold text-black mb-6 text-left">
-          Ongoing
-        </h3>
+        <h3 class="text-2xl font-bold text-black mb-6 text-left">Ongoing</h3>
 
         <ol>
           <WeatherWarningCard
@@ -98,9 +94,7 @@
           />
         </ol>
 
-        <h3 class="text-2xl font-bold text-black mb-6 mt-12 text-left">
-          Expected
-        </h3>
+        <h3 class="text-2xl font-bold text-black mb-6 mt-12 text-left">Expected</h3>
 
         <ol>
           <WeatherWarningCard
@@ -111,7 +105,6 @@
         </ol>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -125,30 +118,156 @@ const filterEvent = ref('all')
 
 const warnings = ref([
   // Ongoing Land
-  { status: 'Ongoing', type: 'land', severity: 'orange', title: 'Avalanche', level: '3', location: 'Nordenskiöld Land', description: 'Considerable avalanche danger...', recommendations: ['Avoid terrain'] },
-  { status: 'Ongoing', type: 'land', severity: 'orange', title: 'Avalanche', level: '3', location: 'Sunnmøre', description: 'Considerable avalanche danger...', recommendations: ['Avoid terrain'] },
-  { status: 'Ongoing', type: 'land', severity: 'orange', title: 'Avalanche', level: '3', location: 'Indre Fjordane', description: 'Considerable avalanche danger...', recommendations: ['Avoid terrain'] },
-  { status: 'Ongoing', type: 'land', severity: 'orange', title: 'Avalanche', level: '3', location: 'Voss', description: 'Considerable avalanche danger...', recommendations: ['Avoid terrain'] },
-  { status: 'Ongoing', type: 'land', severity: 'orange', title: 'Avalanche', level: '3', location: 'Hardanger', description: 'Considerable avalanche danger...', recommendations: ['Avoid terrain'] },
+  {
+    status: 'Ongoing',
+    type: 'land',
+    severity: 'orange',
+    title: 'Avalanche',
+    level: '3',
+    location: 'Nordenskiöld Land',
+    description: 'Considerable avalanche danger...',
+    recommendations: ['Avoid terrain'],
+  },
+  {
+    status: 'Ongoing',
+    type: 'land',
+    severity: 'orange',
+    title: 'Avalanche',
+    level: '3',
+    location: 'Sunnmøre',
+    description: 'Considerable avalanche danger...',
+    recommendations: ['Avoid terrain'],
+  },
+  {
+    status: 'Ongoing',
+    type: 'land',
+    severity: 'orange',
+    title: 'Avalanche',
+    level: '3',
+    location: 'Indre Fjordane',
+    description: 'Considerable avalanche danger...',
+    recommendations: ['Avoid terrain'],
+  },
+  {
+    status: 'Ongoing',
+    type: 'land',
+    severity: 'orange',
+    title: 'Avalanche',
+    level: '3',
+    location: 'Voss',
+    description: 'Considerable avalanche danger...',
+    recommendations: ['Avoid terrain'],
+  },
+  {
+    status: 'Ongoing',
+    type: 'land',
+    severity: 'orange',
+    title: 'Avalanche',
+    level: '3',
+    location: 'Hardanger',
+    description: 'Considerable avalanche danger...',
+    recommendations: ['Avoid terrain'],
+  },
 
   // Expected Land
-  { status: 'Expected', type: 'land', severity: 'yellow', title: 'Wind', level: '2', location: 'Oslo', description: 'Strong gusts expected...', recommendations: ['Secure items'] },
-  { status: 'Expected', type: 'land', severity: 'yellow', title: 'Wind', level: '2', location: 'Bergen', description: 'Heavy wind gusts...', recommendations: ['Stay indoors'] },
+  {
+    status: 'Expected',
+    type: 'land',
+    severity: 'yellow',
+    title: 'Wind',
+    level: '2',
+    location: 'Oslo',
+    description: 'Strong gusts expected...',
+    recommendations: ['Secure items'],
+  },
+  {
+    status: 'Expected',
+    type: 'land',
+    severity: 'yellow',
+    title: 'Wind',
+    level: '2',
+    location: 'Bergen',
+    description: 'Heavy wind gusts...',
+    recommendations: ['Stay indoors'],
+  },
 
   // Ongoing Sea
-  { status: 'Ongoing', type: 'sea', severity: 'orange', title: 'Gale', level: '3', location: 'North Sea', description: 'Severe gale warning...', recommendations: ['Vessels seek shelter'] },
-  { status: 'Ongoing', type: 'sea', severity: 'orange', title: 'Wind', level: '3', location: 'Skagerrak', description: 'High winds at sea...', recommendations: ['Check moorings'] },
-  { status: 'Ongoing', type: 'sea', severity: 'yellow', title: 'Wind', level: '2', location: 'Barents Sea', description: 'Moderate gale expected...', recommendations: ['Caution advised'] },
-  { status: 'Ongoing', type: 'sea', severity: 'yellow', title: 'Wind', level: '2', location: 'Norwegian Sea', description: 'Increasing wind speeds...', recommendations: ['Secure equipment'] },
-  { status: 'Ongoing', type: 'sea', severity: 'orange', title: 'Gale', level: '3', location: 'Fisher', description: 'Storm force winds...', recommendations: ['Stay in port'] },
+  {
+    status: 'Ongoing',
+    type: 'sea',
+    severity: 'orange',
+    title: 'Gale',
+    level: '3',
+    location: 'North Sea',
+    description: 'Severe gale warning...',
+    recommendations: ['Vessels seek shelter'],
+  },
+  {
+    status: 'Ongoing',
+    type: 'sea',
+    severity: 'orange',
+    title: 'Wind',
+    level: '3',
+    location: 'Skagerrak',
+    description: 'High winds at sea...',
+    recommendations: ['Check moorings'],
+  },
+  {
+    status: 'Ongoing',
+    type: 'sea',
+    severity: 'yellow',
+    title: 'Wind',
+    level: '2',
+    location: 'Barents Sea',
+    description: 'Moderate gale expected...',
+    recommendations: ['Caution advised'],
+  },
+  {
+    status: 'Ongoing',
+    type: 'sea',
+    severity: 'yellow',
+    title: 'Wind',
+    level: '2',
+    location: 'Norwegian Sea',
+    description: 'Increasing wind speeds...',
+    recommendations: ['Secure equipment'],
+  },
+  {
+    status: 'Ongoing',
+    type: 'sea',
+    severity: 'orange',
+    title: 'Gale',
+    level: '3',
+    location: 'Fisher',
+    description: 'Storm force winds...',
+    recommendations: ['Stay in port'],
+  },
 
   // Expected Sea
-  { status: 'Expected', type: 'sea', severity: 'yellow', title: 'Wind', level: '2', location: 'Coastal Helgeland', description: 'Wind rising tomorrow...', recommendations: ['Check small boats'] },
-  { status: 'Expected', type: 'sea', severity: 'yellow', title: 'Wind', level: '2', location: 'Utsira', description: 'Expected gale gusts...', recommendations: ['Safety check'] }
+  {
+    status: 'Expected',
+    type: 'sea',
+    severity: 'yellow',
+    title: 'Wind',
+    level: '2',
+    location: 'Coastal Helgeland',
+    description: 'Wind rising tomorrow...',
+    recommendations: ['Check small boats'],
+  },
+  {
+    status: 'Expected',
+    type: 'sea',
+    severity: 'yellow',
+    title: 'Wind',
+    level: '2',
+    location: 'Utsira',
+    description: 'Expected gale gusts...',
+    recommendations: ['Safety check'],
+  },
 ])
 
 const filterLogic = (dataStatus) => {
-  return warnings.value.filter(w => {
+  return warnings.value.filter((w) => {
     const tabMatch = w.type === activeTab.value
     const statusMatch = w.status === dataStatus
     const sevMatch = filterSeverity.value === 'all' || w.severity === filterSeverity.value

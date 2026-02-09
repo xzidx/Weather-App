@@ -49,7 +49,7 @@ const router = createRouter({
       name: 'signup',
       component: () => import('../views/SignupView.vue'),
     },
-     {
+    {
       path: '/water-temperatures',
       name: 'water-list',
       component: RegionListView,

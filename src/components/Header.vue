@@ -19,7 +19,7 @@ library.add(faMagnifyingGlassLocation, faBars, faRightToBracket, faXmark, faUser
 
 // Local state
 const searchOpen = ref(false)
-const searchInput = ref("")
+const searchInput = ref('')
 const menuOpen = ref(false)
 
 // Vuex Store
@@ -28,19 +28,19 @@ const isLoggedIn = computed(() => store.getters.isLoggedIn)
 const user = computed(() => store.getters.user)
 
 // Event emitter to parent
-const emit = defineEmits(["search"])
+const emit = defineEmits(['search'])
 
 // Toggle search input open/close
 function toggleSearch() {
   searchOpen.value = !searchOpen.value
-  menuOpen.value = false 
+  menuOpen.value = false
 }
 
 // Handle search submit (Enter key)
 function handleSearchEnter(event) {
-  if(event.key === 'Enter' && searchInput.value.trim() !== "") {
-    emit("search", searchInput.value.trim())
-    searchInput.value = ""
+  if (event.key === 'Enter' && searchInput.value.trim() !== '') {
+    emit('search', searchInput.value.trim())
+    searchInput.value = ''
     searchOpen.value = false
   }
 }
@@ -60,7 +60,6 @@ function logout() {
 <template>
   <header class="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
     <nav class="max-w-full mx-auto px-6 py-4 flex justify-between items-center h-20">
-
       <div v-if="!searchOpen" class="flex items-center">
         <RouterLink to="/">
           <img
@@ -69,14 +68,14 @@ function logout() {
             class="h-16 w-auto transition-transform duration-300 hover:scale-105"
           />
         </RouterLink>
-        <span class="text-heading self-center text-lg font-semibold whitespace-nowrap text-black ml-2"
+        <span
+          class="text-heading self-center text-lg font-semibold whitespace-nowrap text-black ml-2"
           >Nimbus Travel</span
         >
       </div>
 
       <div v-if="!searchOpen" class="relative">
         <ul class="flex items-center gap-10 text-lg font-semibold text-gray-700">
-
           <li class="relative group flex items-center">
             <div
               @click="toggleSearch"
@@ -100,26 +99,35 @@ function logout() {
               v-show="menuOpen"
               class="absolute top-14 right-0 w-64 bg-white shadow-lg rounded-md border border-gray-200 z-50 animate-fadeIn flex flex-col overflow-hidden"
             >
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+              <li
+                class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50"
+              >
                 <RouterLink to="/about" class="block w-full">About us</RouterLink>
               </li>
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+              <li
+                class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50"
+              >
                 <RouterLink to="/contact" class="block w-full">Contact</RouterLink>
               </li>
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+              <li
+                class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50"
+              >
                 <RouterLink to="/help" class="block w-full">Help</RouterLink>
               </li>
-              <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50">
+              <li
+                class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base border-b border-gray-50"
+              >
                 <RouterLink to="/warning" class="block w-full">Warning</RouterLink>
               </li>
               <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
                 <RouterLink to="/water-temperatures" class="block w-full">Weather View</RouterLink>
               </li>
 
-              <li v-if="isLoggedIn" 
-                  @click="logout"
-                  class="px-4 py-2 hover:bg-red-50 cursor-pointer text-red-500 border-t border-gray-200 font-bold"
-                >
+              <li
+                v-if="isLoggedIn"
+                @click="logout"
+                class="px-4 py-2 hover:bg-red-50 cursor-pointer text-red-500 border-t border-gray-200 font-bold"
+              >
                 Logout
               </li>
             </ul>
@@ -138,11 +146,7 @@ function logout() {
           </li>
         </ul>
 
-        <div
-          v-if="menuOpen"
-          @click="closeMenu"
-          class="fixed inset-0 z-40 bg-transparent"
-        ></div>
+        <div v-if="menuOpen" @click="closeMenu" class="fixed inset-0 z-40 bg-transparent"></div>
       </div>
 
       <div v-else class="flex-1 flex items-center gap-4 animate-fadeIn">
