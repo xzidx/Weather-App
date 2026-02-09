@@ -116,7 +116,7 @@ function logout() {
                 <RouterLink to="/warning" class="block w-full">Warning</RouterLink>
               </li>
               <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base">
-                <RouterLink to="/weather" class="block w-full">Weather View</RouterLink>
+                <RouterLink to="/water-temperature" class="block w-full">Weather View</RouterLink>
               </li>
 
               <li v-if="isLoggedIn" 
