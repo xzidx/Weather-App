@@ -68,9 +68,6 @@
                 <span class="font-bold text-sm flex flex-col ">
                   {{ day.temp.day !== null ? Math.round(day.temp.day) : '--' }}° 
                 </span>
-                 <span class="font-bold text-sm flex flex-col ">
-                 
-                </span>
               </div>
             </div>
           </div>
@@ -78,27 +75,28 @@
           <!-- NEARBY PROVINCES -->
           <div class="border border-white/10 flex flex-row bg-[#CAF0F8] p-4 h-[300px] items-center justify-center gap-10 relative">
             <div class="lg:col-span-4 space-y-4 w-100">
-            <div class="space-y-2 flex flex-col gap-2">
-              <h3 class="text-sm font-bold px-1 uppercase text-gray-500 tracking-widest">
-                Weather
-              </h3>
+              <div class="space-y-2 flex flex-col gap-2">
+                <h3 class="text-sm font-bold px-1 uppercase text-gray-500 tracking-widest">
+                  Weather
+                </h3>
 
-              <div
-                v-for="item in weatherDetails"
-                :key="item.label"
-                class="flex justify-between items-center bg-[#00B4D8] p-3 rounded-xl border border-white/10"
-              >
-                <div>
-                  <p class="font-bold text-md]">{{ item.label }}</p>
+                <div
+                  v-for="item in weatherDetails"
+                  :key="item.label"
+                  class="flex justify-between items-center bg-[#00B4D8] p-3 rounded-xl border border-white/10"
+                >
+                  <div>
+                    <p class="font-bold text-md">{{ item.label }}</p>
+                  </div>
+
+                  <div class="flex items-center gap-3">
+                    <span class="text-md font-bold">{{ item.value }}</span>
+                  </div>
                 </div>
 
-                <div class="flex items-center gap-3">
-                  <span class="text-md font-bold">{{ item.value }}</span>
-                </div>
               </div>
-
             </div>
-          </div>
+
             <div class="lg:col-span-4 space-y-4 w-100">
               <div class="space-y-2 flex flex-col gap-2">
                 <h3 class="text-sm font-bold px-1 uppercase text-gray-500 tracking-widest">
@@ -111,7 +109,6 @@
                   class="flex justify-between items-center bg-[#00B4D8] p-3 rounded-xl border border-white/10"
                 >
                   <div>
-  
                     <p class="font-bold text-md">{{ prov.name }}</p>
                   </div>
                   <div class="flex items-center gap-3">
@@ -122,11 +119,7 @@
 
               </div>
             </div>
-        
-
-            
           </div>
-          
 
         </div>
       </div>
@@ -140,8 +133,8 @@ import { ref, onMounted, computed } from "vue"
 /* STATE */
 const weather = ref(null)
 const weekly = ref([])
-const nearbyCities = ref([]) // still used for layout
-const weatherDetails = ref([]) // <-- for right-hand weather sidebar
+const nearbyCities = ref([])
+const weatherDetails = ref([])
 
 /* TIME */
 const dayName = computed(() =>
@@ -206,8 +199,8 @@ const fetchWeather = async (lat, lon, nameOverride = null) => {
   }
 }
 
-/* FETCH WEATHER DETAILS FOR RIGHT SIDEBAR ONLY */
-const API_KEY = "cf3227c5d49cdc2b392aec200d26cff0" // <-- replace with your key
+/* FETCH WEATHER DETAILS */
+const API_KEY = "cf3227c5d49cdc2b392aec200d26cff0"
 
 const fetchWeatherDetails = async (lat, lon) => {
   try {
@@ -215,7 +208,6 @@ const fetchWeatherDetails = async (lat, lon) => {
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
     )
     const data = await res.json()
-
     weatherDetails.value = [
       { label: "Wind", value: Math.round(data.wind.speed * 3.6) + " km/h" },
       { label: "Feels Like", value: Math.round(data.main.feels_like) + "°" },
@@ -228,63 +220,33 @@ const fetchWeatherDetails = async (lat, lon) => {
   }
 }
 
-/* HARDCODE LIST OF CAMBODIAN PROVINCES WITH LAT/LON */
-const provincesList = [
-  { name: "Phnom Penh", lat: 11.5564, lon: 104.9282 },
-  { name: "Kandal", lat: 11.6500, lon: 105.0000 },
-  { name: "Kampong Cham", lat: 12.0000, lon: 105.5000 },
-  { name: "Kampong Chhnang", lat: 12.2500, lon: 104.6667 },
-  { name: "Kampong Speu", lat: 11.5000, lon: 104.7500 },
-  { name: "Kampong Thom", lat: 12.7000, lon: 105.0000 },
-  { name: "Kampot", lat: 10.6167, lon: 104.1833 },
-  { name: "Kep", lat: 10.5833, lon: 104.3333 },
-  { name: "Koh Kong", lat: 11.6167, lon: 102.9833 },
-  { name: "Preah Sihanouk", lat: 10.6333, lon: 103.5000 },
-  { name: "Prey Veng", lat: 11.5000, lon: 105.8333 },
-  { name: "Svay Rieng", lat: 11.0000, lon: 105.7500 },
-  { name: "Takeo", lat: 10.9833, lon: 104.7833 },
-  { name: "Battambang", lat: 13.1000, lon: 103.2000 },
-  { name: "Banteay Meanchey", lat: 13.5000, lon: 102.9833 },
-  { name: "Oddar Meanchey", lat: 13.7333, lon: 103.1500 },
-  { name: "Kampong Svay", lat: 13.0833, lon: 104.9167 },
-  { name: "Ratanakiri", lat: 13.8333, lon: 106.9833 },
-  { name: "Stung Treng", lat: 13.5250, lon: 105.9667 },
-  { name: "Mondulkiri", lat: 12.5333, lon: 107.4833 }
-]
-
-/* CALCULATE DISTANCE */
-const distance = (lat1, lon1, lat2, lon2) => {
-  const R = 6371
-  const dLat = (lat2 - lat1) * Math.PI / 180
-  const dLon = (lon2 - lon1) * Math.PI / 180
-  const a =
-    Math.sin(dLat/2) ** 2 +
-    Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) * Math.sin(dLon/2)**2
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
-  return R * c
-}
-
-/* FETCH NEARBY PROVINCES */
-const fetchNearbyProvinces = async (currentLat, currentLon, currentCityName) => {
+/* FETCH NEARBY CITIES (3 UNIQUE, EXCLUDE MAIN CITY) */
+const fetchNearbyCities = async (lat, lon) => {
   try {
-    const sorted = provincesList
-      .filter(p => p.name !== currentCityName)
-      .map(p => ({ ...p, dist: distance(currentLat, currentLon, p.lat, p.lon) }))
-      .sort((a, b) => a.dist - b.dist)
-      .slice(0, 3)
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lon}&cnt=10&units=metric&appid=${API_KEY}`
+    )
+    const data = await res.json()
 
-    const results = []
-    for (const prov of sorted) {
-      const weatherData = await fetchWeather(prov.lat, prov.lon, prov.name)
-      results.push({
-        name: prov.name,
-        temp: Math.round(weatherData.main.temp),
-        icon: weatherData.weather[0].icon
-      })
-    }
-    nearbyCities.value = results
+    const uniqueCities = []
+    data.list.forEach(city => {
+      const cityName = city.name
+      if (
+        cityName.toLowerCase() !== weather.value.name.toLowerCase() &&
+        !uniqueCities.some(c => c.name.toLowerCase() === cityName.toLowerCase())
+      ) {
+        uniqueCities.push({
+          name: cityName,
+          temp: Math.round(city.main.temp),
+          icon: city.weather[0].icon
+        })
+      }
+    })
+
+    nearbyCities.value = uniqueCities.slice(0, 3)
   } catch (err) {
-    console.error("Nearby provinces fetch failed:", err)
+    console.error("Nearby cities fetch failed:", err)
+    nearbyCities.value = []
   }
 }
 
@@ -292,7 +254,8 @@ const fetchNearbyProvinces = async (currentLat, currentLon, currentCityName) => 
 const detectLocation = () => {
   if (!navigator.geolocation) {
     fetchWeather(11.5564, 104.9282).then((w) => (weather.value = w))
-    fetchWeatherDetails(11.5564, 104.9282) // sidebar weather
+    fetchWeatherDetails(11.5564, 104.9282)
+    fetchNearbyCities(11.5564, 104.9282)
     return
   }
 
@@ -312,18 +275,17 @@ const detectLocation = () => {
       weather: [{ icon: mapWeatherCodeToIcon(weather.value.daily.weathercode[i]) }]
     }))
 
-    // nearby provinces
-    if (cityData.city) await fetchNearbyProvinces(lat, lon, cityData.city)
+    // nearby cities (only 3 unique)
+    fetchNearbyCities(lat, lon)
 
-    // fetch sidebar weather
+    // sidebar weather
     fetchWeatherDetails(lat, lon)
   }, () => {
     fetchWeather(11.5564, 104.9282).then((w) => (weather.value = w))
     fetchWeatherDetails(11.5564, 104.9282)
+    fetchNearbyCities(11.5564, 104.9282)
   })
 }
 
 onMounted(detectLocation)
 </script>
-
-
